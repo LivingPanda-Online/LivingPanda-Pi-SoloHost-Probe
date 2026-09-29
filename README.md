@@ -1,31 +1,22 @@
 # LivingPanda Pi Utility
 
-Canonical LivingPanda source for the Pi Desktop SoloHost utility.
+## v0.3.0 — Local Operator Intelligence
 
-## v0.2.0
+Read-only local monitoring for Pi SoloHost:
 
-Adds a mobile-friendly, read-only local dashboard for:
+- Pi Node port reachability history for 31401–31403
+- LivingPanda worker availability and latency history
+- state-change events for unreachable / partial / recovered states
+- worker latency slow/recovered events
+- 60-minute availability and latency summary
+- 24-hour sample retention
+- 7-day event retention
+- SQLite telemetry stored only in an app-owned Docker volume
 
-- Pi Node TCP reachability on ports 31401–31403
-- this SoloHost container's own runtime health
-- allow-listed LivingPanda data-worker health
+Security boundary: no Docker socket, no Windows host mounts, no privileged mode, all Linux capabilities dropped, read-only container root filesystem, no Commander control, no API keys or private files.
 
-It deliberately does **not** mount the Docker socket, mount host directories, run privileged, or connect to Commander control.
+Pi SoloHost currently disallows Docker Compose `security_opt`, so v0.3 does not request `no-new-privileges` through Compose.
 
-## Architecture
+Canonical source: `LivingPanda-Online/LivingPanda-Pi-SoloHost-Probe`
 
-- Canonical source: `LivingPanda-Online/LivingPanda-Pi-SoloHost-Probe`
-- Public distribution image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.2.0`
-- Public distribution repo: `noorelahmanifestofinal/LivingPanda-Pi-SoloHost-Probe-Public`
-
-## Local test
-
-```powershell
-docker compose -f docker-compose.local.yml up -d --build
-```
-
-Open `http://127.0.0.1:18081`.
-
-## Security boundary
-
-No database credentials, API keys, Commander commands, Docker socket, privileged mode, or host filesystem mounts.
+Public image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.3.0`
