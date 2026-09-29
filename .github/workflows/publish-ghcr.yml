@@ -22,10 +22,15 @@ jobs:
           python-version: "3.12"
 
       - name: Compile Python
-        run: python -m py_compile server.py
+        run: |
+          python -m py_compile server.py
+          python -m py_compile evidence-bridge/app.py
 
-      - name: Run incident regression tests
+      - name: Run incident and root-cause regression tests
         run: python -m unittest discover -s tests -v
 
-      - name: Build container
+      - name: Build SoloHost container
         run: docker build -t livingpanda-pi-solohost-probe:ci .
+
+      - name: Build evidence bridge container
+        run: docker build -t livingpanda-pi-evidence-bridge:ci evidence-bridge
