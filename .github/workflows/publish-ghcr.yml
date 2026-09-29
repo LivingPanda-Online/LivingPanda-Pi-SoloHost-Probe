@@ -1,4 +1,4 @@
-name: Validate SoloHost probe
+﻿name: Validate SoloHost probe
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
           python -m py_compile server.py
           python -m py_compile evidence-bridge/app.py
 
-      - name: Run incident and root-cause regression tests
+      - name: Run incident, root-cause, and recovery regression tests
         run: python -m unittest discover -s tests -v
 
       - name: Build SoloHost container
@@ -34,3 +34,4 @@ jobs:
 
       - name: Build evidence bridge container
         run: docker build -t livingpanda-pi-evidence-bridge:ci evidence-bridge
+
