@@ -16,5 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile Python
+        run: python -m py_compile server.py
+
+      - name: Run incident regression tests
+        run: python -m unittest discover -s tests -v
+
       - name: Build container
         run: docker build -t livingpanda-pi-solohost-probe:ci .
