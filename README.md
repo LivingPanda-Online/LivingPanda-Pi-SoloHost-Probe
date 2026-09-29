@@ -1,18 +1,22 @@
-# LivingPanda Pi SoloHost Probe
+# LivingPanda Pi Utility
 
-Canonical LivingPanda source for the minimal Pi Desktop SoloHost compatibility probe.
+Canonical LivingPanda source for the Pi Desktop SoloHost utility.
+
+## v0.2.0
+
+Adds a mobile-friendly, read-only local dashboard for:
+
+- Pi Node TCP reachability on ports 31401–31403
+- this SoloHost container's own runtime health
+- allow-listed LivingPanda data-worker health
+
+It deliberately does **not** mount the Docker socket, mount host directories, run privileged, or connect to Commander control.
 
 ## Architecture
 
 - Canonical source: `LivingPanda-Online/LivingPanda-Pi-SoloHost-Probe`
-- Public distribution image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.1.0`
+- Public distribution image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.2.0`
 - Public distribution repo: `noorelahmanifestofinal/LivingPanda-Pi-SoloHost-Probe-Public`
-
-The separate public distribution image exists because the LivingPanda-Online organization intentionally blocks public package visibility.
-
-## Safety boundary
-
-This probe contains no database, API keys, Commander access, host filesystem mounts, privileged Docker access, or private LivingPanda data.
 
 ## Local test
 
@@ -20,8 +24,8 @@ This probe contains no database, API keys, Commander access, host filesystem mou
 docker compose -f docker-compose.local.yml up -d --build
 ```
 
-Open `http://127.0.0.1:18080`.
+Open `http://127.0.0.1:18081`.
 
-## Pi SoloHost package
+## Security boundary
 
-The `package/` directory contains the validated `docker-compose.yml` and `config_options.yml`.
+No database credentials, API keys, Commander commands, Docker socket, privileged mode, or host filesystem mounts.
