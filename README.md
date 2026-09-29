@@ -1,23 +1,18 @@
 # LivingPanda Pi SoloHost Probe
 
-Minimal, intentionally isolated compatibility probe for Pi Desktop SoloHost.
+Canonical LivingPanda source for the minimal Pi Desktop SoloHost compatibility probe.
 
-## Purpose
+## Architecture
 
-Verify the complete path:
+- Canonical source: `LivingPanda-Online/LivingPanda-Pi-SoloHost-Probe`
+- Public distribution image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.1.0`
+- Public distribution repo: `noorelahmanifestofinal/LivingPanda-Pi-SoloHost-Probe-Public`
 
-`LivingPanda source -> GitHub -> GHCR -> Pi SoloHost -> local Pi Desktop UI`
+The separate public distribution image exists because the LivingPanda-Online organization intentionally blocks public package visibility.
 
 ## Safety boundary
 
-This probe has:
-
-- no database
-- no API keys
-- no Commander control
-- no host filesystem mounts
-- no privileged Docker access
-- no private LivingPanda data
+This probe contains no database, API keys, Commander access, host filesystem mounts, privileged Docker access, or private LivingPanda data.
 
 ## Local test
 
@@ -29,13 +24,4 @@ Open `http://127.0.0.1:18080`.
 
 ## Pi SoloHost package
 
-The `package/` directory contains:
-
-- `docker-compose.yml`
-- `config_options.yml`
-
-The published image is:
-
-`ghcr.io/livingpanda-online/livingpanda-pi-solohost-probe:0.1.0`
-
-Version: **0.1.0**
+The `package/` directory contains the validated `docker-compose.yml` and `config_options.yml`.
