@@ -24,9 +24,10 @@ jobs:
       - name: Compile Python
         run: |
           python -m py_compile server.py
+          python -m py_compile playbooks.py
           python -m py_compile evidence-bridge/app.py
 
-      - name: Run incident, root-cause, and recovery regression tests
+      - name: Run full regression suite
         run: python -m unittest discover -s tests -v
 
       - name: Build SoloHost container
