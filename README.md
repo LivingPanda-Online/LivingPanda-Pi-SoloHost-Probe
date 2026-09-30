@@ -2,9 +2,9 @@
 
 > **AI / contributor handoff:** start with [AGENTS.md](AGENTS.md), then [docs/project-state.yaml](docs/project-state.yaml), [docs/ROADMAP.md](docs/ROADMAP.md), [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md), and [docs/RUNBOOK.md](docs/RUNBOOK.md). The project-state file is the canonical machine-readable handoff; the roadmap carries the product direction through v1.0 and future SoloHost apps.
 
-## v0.7.0 — Recovery Learning / Playbook Intelligence (candidate)
+## v0.7.0 — Recovery Learning / Playbook Intelligence
 
-The deployed Pi SoloHost app remains **v0.6.0** while this feature branch is validated. The v0.7 candidate learns from resolved, evidence-backed v0.6+ recovery outcomes without executing repairs.
+v0.7 is the deployed Pi SoloHost release. It learns from resolved, evidence-backed v0.6+ recovery outcomes without executing repairs.
 
 It adds:
 
@@ -21,7 +21,7 @@ It adds:
 
 Only incidents with resolved `verified_stable` or `recurred` outcomes and actual root-cause evidence are aggregated. Sparse history remains visible as insufficient evidence rather than being promoted to a learned playbook.
 
-The candidate package points to `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.7.0`, but production must not be upgraded until migration tests, Pi package validation, CI, image publishing/anonymous pull verification, and live Pi Node sync checks pass.
+The deployed package is `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.7.0`. Learned playbooks remain recommendation-only and explicitly report sample count, observed outcomes, evidence quality, and a correlation-not-causation warning.
 
 ## v0.6.0 — Recovery Intelligence
 
@@ -91,7 +91,7 @@ The optional PC Intelligence Evidence Bridge remains read-only and only exposes 
 
 ### Continuation map
 
-The next planned build is **v0.7.0 — Recovery Learning / Playbook Intelligence**. It will learn from repeated v0.6 recovery outcomes, but it must remain recommendation-only and approval-gated. Acceptance criteria and proposed data fields are maintained in `docs/project-state.yaml`.
+The next planned build is **v0.8.0 — Generic Pi Node Operator Edition**. It will remove workstation-specific assumptions, add first-run capability discovery, privacy/retention controls, diagnostics export and safe reset behavior, and prove the same read-only SoloHost package works on another Pi Node operator machine without source edits. See `docs/ROADMAP.md` and `docs/project-state.yaml`.
 
 Additional technical references:
 
@@ -103,4 +103,4 @@ Additional technical references:
 
 Canonical source: `LivingPanda-Online/LivingPanda-Pi-SoloHost-Probe`
 
-Public image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.6.0`
+Public image: `ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.7.0`

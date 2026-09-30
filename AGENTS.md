@@ -17,9 +17,8 @@ Do not infer production state from old chat history if the repository/runtime ca
 
 ## Current release
 
-- Current canonical release: **v0.6.0 â€” Recovery Intelligence**
-- Active candidate: **v0.7.0 â€” Recovery Learning / Playbook Intelligence** on `feat/solohost-v0.7-playbook-intelligence`
-- Next planned milestone: **v0.7.0 â€” Recovery Learning / Playbook Intelligence**
+- Current canonical release: **v0.7.0 — Recovery Learning / Playbook Intelligence**
+- Next planned milestone: **v0.8.0 — Generic Pi Node Operator Edition**
 - Canonical branch: `main`
 - Releases are tagged `vX.Y.Z`.
 - The Pi SoloHost listing must remain **Unlisted â€” link only** unless the owner explicitly changes that decision.
@@ -47,7 +46,7 @@ Keep:
 - localhost-only published port
 - read-only Evidence Bridge summaries only
 
-Recommendations may describe a safe next action, but **v0.6 does not execute repairs**. v0.7 must preserve guarded approval before any future action integration.
+Learned v0.7 recommendations remain read-only and do not execute repairs. v0.8 must preserve that boundary while making the app generic across Pi Node operator machines.
 
 ## Data integrity rules
 
@@ -111,25 +110,25 @@ feature branch
 
 Do not bypass this order for convenience.
 
-## v0.7 direction
+## v0.8 direction
 
-The next build is **Recovery Learning / Playbook Intelligence**.
+The next build is **Generic Pi Node Operator Edition**.
 
-Goal: learn from repeated incidents and recovery outcomes which recommendation is most reliable for this specific machine/environment, while remaining read-only and approval-gated.
+Goal: remove assumptions specific to this workstation so another Pi Node operator can install the same SoloHost package and receive useful Pi/Docker/network intelligence without editing source.
 
-v0.7 should add:
+v0.8 should add:
 
-- playbook/outcome aggregation by root cause and incident category;
-- success/recurrence rates for recommendations;
-- median/P95 recovery times by playbook;
-- evidence-quality/confidence tracking;
-- recommendation ranking based on local history;
-- explicit distinction between `learned recommendation` and `executed action`;
-- no autonomous repair execution;
-- explainable recommendation provenance;
-- enough samples before promoting a recommendation as learned.
+- first-run capability discovery;
+- graceful behavior when LivingPanda-specific workers are absent;
+- generic Pi Node, Docker/runtime, and network diagnostics;
+- privacy and retention controls;
+- diagnostics export with no secrets;
+- safe reset of app-owned telemetry;
+- no dependency on Commander or private workstation paths;
+- compatibility proof on a second machine;
+- the same read-only/no-auto-repair security boundary.
 
-See `docs/project-state.yaml` for acceptance criteria.
+See `docs/ROADMAP.md` and `docs/project-state.yaml` for acceptance criteria and the path to private beta.
 
 ## When uncertain
 
