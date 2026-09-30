@@ -275,9 +275,9 @@ Keep APIs backward-compatible where practical.
 8. Public image anonymous pull.
 9. Live production verification.
 
-## v0.7 safety boundary
+## v0.7 learning boundary
 
-Recovery Learning / Playbook Intelligence learns from historical outcomes, but it does not turn the SoloHost app into a repair executor.
+Recovery Learning / Playbook Intelligence learns from historical outcomes while keeping the SoloHost app read-only.
 
 The learned system answers:
 
@@ -288,4 +288,18 @@ The learned system answers:
 - what evidence quality/confidence supported those cases?
 - why one learned recommendation ranks above alternatives?
 
-Any future action execution belongs behind a separate guarded approval boundary, not inside this read-only Pi app.
+Any future action layer belongs behind a separate guarded approval boundary, not inside this read-only Pi app.
+
+## v0.8 portability boundary
+
+Generic Pi Node Operator Edition makes the same intelligence useful on another Pi Node operator machine without adding privilege. Machine-specific assumptions move behind capability discovery or optional adapters.
+
+v0.8 should treat these as optional or discovered capabilities rather than universal facts:
+
+- LivingPanda worker health on port 8000;
+- LivingPanda local web on port 8080;
+- the PC Intelligence Evidence Bridge on port 8001;
+- workstation-specific host paths or names;
+- Commander availability.
+
+Core Pi, Docker/runtime, and network diagnostics must remain useful when all LivingPanda-specific services are absent. The SoloHost container keeps the same no-Docker-socket, no-host-mount and recommendation-only boundary.

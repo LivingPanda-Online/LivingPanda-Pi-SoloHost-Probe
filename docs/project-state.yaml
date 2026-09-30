@@ -8,21 +8,17 @@ project:
   canonical_branch: main
 
 release:
-  current: "0.6.0"
-  name: Recovery Intelligence
-  candidate: "0.7.0"
-  candidate_name: Recovery Learning / Playbook Intelligence
-  candidate_branch: feat/solohost-v0.7-playbook-intelligence
-  candidate_status: local-development
-  canonical_tag: v0.6.0
-  canonical_commit: e72f3b1
-  public_distribution_commit: 4e27212
-  image: ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.6.0
-  image_digest: sha256:2858bca2f65cb43976dc3838ba20e5b91f9e9efebb6039d9aafd759689298832
+  current: "0.7.0"
+  name: Recovery Learning / Playbook Intelligence
+  canonical_tag: v0.7.0
+  canonical_commit: 3e7f0b5
+  public_distribution_commit: 06e096a
+  image: ghcr.io/noorelahmanifestofinal/livingpanda-pi-solohost-probe:0.7.0
+  image_digest: sha256:43e19423e4cb06702d016cd86a9db18940b5dfac777d68d5c0887774ab41eee6
   pi_listing_visibility: unlisted
   production_status_at_handoff:
     app_health: healthy
-    pi_node_state: Synced!
+    pi_node_state: verification_pending
     evidence_bridge: healthy
 
 capabilities:
@@ -38,7 +34,7 @@ capabilities:
     - recurrence detection
     - escalation from observe to inspect
     - recovery outcome tracking
-  v0_7_candidate:
+  v0_7:
     - evidence-backed recovery outcome observations
     - persistent playbook aggregation beyond incident retention
     - minimum-sample learning threshold
@@ -73,7 +69,7 @@ components:
     playbooks: tests/test_playbooks.py
     handoff: tests/test_handoff_docs.py
     total_at_v0_6: 14
-    total_candidate_v0_7: 22
+    total_at_v0_7: 22
 
 security_invariants:
   privileged: false
@@ -128,7 +124,7 @@ v0_6_recovery:
     superseded_condition: superseded
   automatic_actions: none
 
-v0_7_candidate:
+v0_7_learning:
   minimum_playbook_observations: 3
   eligible_outcomes:
     - verified_stable
@@ -148,55 +144,40 @@ v0_7_candidate:
     - Pi Node structured state is Synced!
 
 next_milestone:
-  version: "0.7.0"
-  name: Recovery Learning / Playbook Intelligence
+  version: "0.8.0"
+  name: Generic Pi Node Operator Edition
   objective: >
-    Learn which recommendations have the best observed outcomes for this local
-    environment by aggregating repeated incidents, recovery durations,
-    recurrence behavior, evidence quality, and recommendation history.
+    Remove workstation-specific assumptions so another Pi Node operator can
+    install and use the same SoloHost package without editing source.
   safety_rule: >
-    Learning may change recommendation ranking, but must not execute recovery
-    actions. Any future action integration remains guarded and approval-gated.
-  proposed_data_model:
-    - playbook_key
-    - cause
-    - incident_category
-    - recommendation_text
-    - observation_count
-    - verified_stable_count
-    - recurrence_count
-    - success_rate
-    - median_recovery_seconds
-    - p95_recovery_seconds
-    - median_stability_seconds
-    - confidence_distribution
-    - evidence_quality
-    - last_updated_ts
+    Keep the operator app read-only. Generic capability discovery, privacy
+    controls, diagnostics export, and reset behavior must not add privileged
+    host control or automatic repair execution.
   acceptance_criteria:
-    - preserve every v0.6 table and historical row
-    - aggregate only evidence-backed v0.6+ recovery records
-    - require a minimum sample count before calling a playbook learned
-    - show sample count beside learned recommendations
-    - expose why a recommendation ranks above alternatives
-    - never equate correlation with causation
-    - never auto-execute a recommendation
-    - add regression tests for sparse data, conflicting outcomes, recurrence, and stable outcomes
-    - migration test against a copy of production SQLite
-    - Pi validator must return ok=true
-    - full CI must pass before merge
+    - first-run capability discovery
+    - optional LivingPanda services degrade gracefully
+    - generic Pi Node, Docker, and network diagnostics
+    - no dependency on private paths, this PC hostname, or Commander
+    - privacy and retention controls
+    - diagnostics export contains no secrets
+    - safe app-owned telemetry reset
+    - clean install works on a second machine without source edits
+    - full regression and migration tests pass
+    - Pi validator returns ok=true
+    - CI and anonymous public image pull pass before deployment
 
 roadmap:
-  nearest_incomplete_milestone: "0.7.0"
+  nearest_incomplete_milestone: "0.8.0"
   sequence:
     - version: "0.7.0"
       name: Recovery Learning / Playbook Intelligence
-      status: active_candidate
+      status: completed
       objective: >
         Learn from repeated evidence-backed recovery outcomes and rank safe
         recommendations by observed local reliability without executing repairs.
     - version: "0.8.0"
       name: Generic Pi Node Operator Edition
-      status: planned
+      status: next
       objective: >
         Remove workstation-specific assumptions so another Pi Node operator can
         install and use the same SoloHost package without editing source.
@@ -253,16 +234,17 @@ known_operational_notes:
   - Prefer in-place Compose upgrades so the app-owned operator-data volume survives.
 
 handoff:
-  last_completed_milestone: v0.6.0
-  active_candidate: v0.7.0
+  last_completed_milestone: v0.7.0
   next_action: >
-    Finish v0.7 candidate validation on the feature branch: full regression tests,
-    migration against a SQLite backup copy, image builds, and Pi package validation.
-    Do not merge or deploy until CI passes, the public image is anonymously pullable,
-    and Pi Node structured state has returned to Synced! after the Docker recovery.
+    Start v0.8 Generic Pi Node Operator Edition from main on a feature branch.
+    First re-verify live v0.7 health, production database persistence, Evidence
+    Bridge health, Pi Node structured Synced! state, and the current unlisted
+    registry package. Do not skip directly to beta/listing work before v0.8
+    generic-machine acceptance criteria are proven.
   first_files_to_read:
     - AGENTS.md
     - docs/project-state.yaml
+    - docs/ROADMAP.md
     - docs/ARCHITECTURE.md
     - docs/RUNBOOK.md
     - README.md

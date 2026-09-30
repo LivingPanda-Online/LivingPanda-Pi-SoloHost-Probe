@@ -34,7 +34,7 @@
 
 **Decision:** v0.6 recommendations do not execute recovery.
 
-**Why:** Recovery Intelligence should first prove that recommendations are reliable. v0.7 will learn from outcomes, still without automatic execution.
+**Why:** Recovery Intelligence first proved that recommendations could be observed safely. v0.7 now learns from those outcomes while keeping recommendations advisory. v0.8 must preserve that boundary while generalizing the app across operator machines.
 
 ## v0.7 learning threshold
 

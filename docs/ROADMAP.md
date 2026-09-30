@@ -4,9 +4,9 @@ This roadmap describes the product direction after the current production releas
 
 ## Current position
 
-Production today: **v0.6.0 — Recovery Intelligence**
+Production today: **v0.7.0 — Recovery Learning / Playbook Intelligence**
 
-Active candidate: **v0.7.0 — Recovery Learning / Playbook Intelligence**
+Next milestone: **v0.8.0 — Generic Pi Node Operator Edition**
 
 The Pi listing remains **Unlisted — link only** during development and early validation.
 
